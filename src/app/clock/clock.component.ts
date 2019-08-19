@@ -19,7 +19,7 @@ export class ClockComponent implements OnInit {
   constructor() {
 
     // Periodically update the information displayed on the page
-    this.timer = interval(30*1000);
+    this.timer = interval(10*1000);
     this.timer.subscribe((t) => {
       this.update();
     });

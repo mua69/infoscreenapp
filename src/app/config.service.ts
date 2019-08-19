@@ -16,7 +16,11 @@ export class ConfigService {
     "content_image_display_duration":30,
     "ticker_display_duration": 5,
     "mixin_image_display_duration": 5,
-    "mixin_image_rate": 2
+    "mixin_image_rate": 2,
+
+    "open_weather_map_url": '',
+    "open_weather_map_api_key": '',
+    "open_weather_map_city_id": ''
   };
 
   private content: any = {
@@ -68,6 +72,18 @@ export class ConfigService {
 
   getTickerDisplayDuration() {
     return this.config.ticker_display_duration;
+  }
+
+  getOpenWeatherMapUrl() {
+    return this.config.open_weather_map_url;
+  }
+
+  getOpenWeatherMapApiKey() {
+    return this.config.open_weather_map_api_key;
+  }
+
+  getOpenWeatherMapCityId() {
+    return this.config.open_weather_map_city_id;
   }
 
   getContent() {

@@ -37,13 +37,12 @@ div.ticker {
  }
 
 td.ticker { 
-/*  width: 100%;*/
   height: 100%;
   box-shadow: 5px 5px 5px rgba(100, 100, 100, 0.7);
   background-color: rgba(104, 158, 180, 0.5);  /* #689eb4;*/    /*#4487a2;*/
   color: white;
   font-family: arial;
-  font-size: 40px;
+  font-size: 4vh;
   text-align: center;
   vertical-align: center;
   border-radius: 10px;
@@ -54,3 +53,22 @@ td.ticker {
   font-family:arial;
 
  }
+
+@media (min-width: 0px) {
+  .emilelogo {
+    width: 100px; 
+  }
+}
+
+@media (min-width: 1900px) {
+  .emilelogo {
+    width: 150px; 
+  }
+}
+
+@media (min-width: 2500px) {
+  .emilelogo {
+    width: 200px; 
+  }
+}
+
