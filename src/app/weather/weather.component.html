@@ -1,3 +1,32 @@
 <p class="temp">{{temperature}}°C
-    <img width="150px"  src="{{currentConditionIcon}}"/>
+      <br>
+      <img class="weathericon"  src="{{currentConditionIcon}}"/>
 </p>
+
+<div align="center">
+      <table class="forecast">
+	<tr>
+	  <td>
+	    3h
+	  </td> 
+
+	  <td>
+	    6h
+	  </td> 
+	</tr>
+
+	<tr>
+	  <td>
+	    {{temp3h}}°C<br>
+	    <img class="forecasticon" src="{{forecastIcon3h}}"/>
+	  </td> 
+
+	  <td>
+	    {{temp6h}}°C<br>
+	    <img class="forecasticon" src="{{forecastIcon6h}}"/>
+	  </td> 
+	</tr>
+	
+	
+      </table>
+</div>

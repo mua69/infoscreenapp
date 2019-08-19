@@ -1,3 +1,68 @@
 .temp { 
   font-size: 3vw;
  }
+
+.forecast { 
+  font-size: 1.4vw;
+  border-collapse: collapse;
+
+}
+
+td { 
+  padding: 8px;
+  border: 2px solid white;
+  text-align: center;
+}
+
+@media (min-width: 0px) {
+  .weathericon {
+    width: 40px; 
+  }
+
+  .forecasticon {
+    width: 20px; 
+  }
+}
+
+@media (min-width: 800px) {
+  .weathericon {
+    width: 70px; 
+  }
+
+  .forecasticon {
+    width: 30px; 
+  }
+}
+
+@media (min-width: 1900px) {
+  .weathericon {
+    width: 95px; 
+  }
+
+  .forecasticon {
+    width: 50px; 
+  }
+
+}
+
+@media (min-width: 2500px) {
+  .weathericon {
+    width: 120px; 
+  }
+
+  .forecasticon {
+    width: 60px; 
+  }
+
+}
+
+@media (min-width: 3500px) {
+  .weathericon {
+    width: 170px; 
+  }
+
+  .forecasticon {
+    width: 85px; 
+  }
+
+}
