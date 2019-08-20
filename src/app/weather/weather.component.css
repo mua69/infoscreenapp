@@ -10,14 +10,15 @@
 .forecastCard { 
   background-color: rgba(104, 158, 180, 0.7); /* lightsteelblue;*/
   box-shadow: 3px 3px 3px rgba(100, 100, 100, 0.7);
-
+  border-radius: 5px;
   padding: 5px;
+  text-align: center;
  }
 
 td { 
   padding: 4px;
 /*  border: 2px solid lightgrey;*/
-  text-align: center;
+/*  text-align: center;*/
 }
 
 
