@@ -6,26 +6,53 @@
 <div align="center">
       <table class="forecast">
 	<tr>
+
 	  <td>
-	    3h
+	    <div class="forecastCard">
+	      <div style="border-bottom:1px solid;">
+		{{forecastContent[0].time}}
+	      </div>
+	      {{forecastContent[0].temp}}°C<br>
+	      <img class="forecasticon" src="{{forecastContent[0].icon}}"/>
+	      </div>
 	  </td> 
 
 	  <td>
-	    6h
+	    <div class="forecastCard">
+	      <div style="border-bottom:1px solid;">
+		{{forecastContent[1].time}}
+	      </div>
+	      {{forecastContent[1].temp}}°C<br>
+	      <img class="forecasticon" src="{{forecastContent[1].icon}}"/>
+	    </div>
 	  </td> 
+
 	</tr>
 
 	<tr>
+
 	  <td>
-	    {{temp3h}}°C<br>
-	    <img class="forecasticon" src="{{forecastIcon3h}}"/>
+	    <div class="forecastCard">
+	      <div style="border-bottom:1px solid;">
+		{{forecastContent[2].time}}
+	      </div>
+	      {{forecastContent[2].temp}}°C<br>
+	      <img class="forecasticon" src="{{forecastContent[2].icon}}"/>
+	      </div>
 	  </td> 
 
 	  <td>
-	    {{temp6h}}°C<br>
-	    <img class="forecasticon" src="{{forecastIcon6h}}"/>
+	    <div class="forecastCard">
+	      <div style="border-bottom:1px solid;">
+		{{forecastContent[3].time}}
+	      </div>
+	      {{forecastContent[3].temp}}°C<br>
+	      <img class="forecasticon" src="{{forecastContent[3].icon}}"/>
+	    </div>
 	  </td> 
+
 	</tr>
+
 	
 	
       </table>

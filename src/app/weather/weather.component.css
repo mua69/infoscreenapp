@@ -5,14 +5,21 @@
 .forecast { 
   font-size: 1.4vw;
   border-collapse: collapse;
-
 }
+
+.forecastCard { 
+  background-color: rgba(104, 158, 180, 0.7); /* lightsteelblue;*/
+  box-shadow: 3px 3px 3px rgba(100, 100, 100, 0.7);
+
+  padding: 5px;
+ }
 
 td { 
-  padding: 8px;
-  border: 2px solid white;
+  padding: 4px;
+/*  border: 2px solid lightgrey;*/
   text-align: center;
 }
+
 
 @media (min-width: 0px) {
   .weathericon {

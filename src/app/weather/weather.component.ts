@@ -14,10 +14,7 @@ export class WeatherComponent implements OnInit {
   public temperature = '--';
   public currentConditionIcon = 'assets/weather/18.png';
 
-  public temp3h = '--';
-  public temp6h = '--';
-  public forecastIcon3h = 'assets/weather/18.png';
-  public forecastIcon6h = 'assets/weather/18.png';
+  public forecastContent = [];
 
   private timerWeather: Observable<number>;
   private timerForecast: Observable<number>;
@@ -63,6 +60,10 @@ export class WeatherComponent implements OnInit {
 			     [ '50n', '40.png'],
 			     ]);
     
+    var i;
+    for (i = 0; i < 4; i++) {
+      this.forecastContent.push({'time':'00:00', 'temp':'--', 'icon':'assets/weather/18.png'});
+    }
   }
 
   ngOnInit() {
@@ -150,6 +151,18 @@ export class WeatherComponent implements OnInit {
     return temp.toFixed(0).toString();
   }
 
+  padzero(v: number): string {
+    var res = '';
+
+    if ( v < 10) {
+      res = '0';
+    }
+
+    res += v;
+
+    return res;
+  }
+
   updateData() : void {
     if (this.weather) {
       this.temperature = this.convertTemp(this.weather.main.temp);
@@ -159,25 +172,24 @@ export class WeatherComponent implements OnInit {
     }
 
     if (this.forecast) {
-      var fc3h = this.forecast.list[1];
+      var i;
+      for (i = 1; i <=4; i++) {
+	var fc = this.forecast.list[i];
 
-      if (fc3h) {
-	this.temp3h = this.convertTemp(fc3h.main.temp);
-	this.forecastIcon3h =  this.getWeatherIcon(fc3h.weather[0].icon);
-      } else {
-	this.temp3h = '--';
-	this.forecastIcon3h = 'assets/weather/18.png';
-      }
+	if (fc) {
+	  var date = new Date(fc.dt * 1000);
 
+	  this.forecastContent[i-1].time = this.padzero(date.getUTCHours()) + ":00";
 
-      var fc6h = this.forecast.list[2];
+	  this.forecastContent[i-1].temp = this.convertTemp(fc.main.temp);
+	  this.forecastContent[i-1].icon = this.getWeatherIcon(fc.weather[0].icon);
 
-      if (fc6h) {
-	this.temp6h = this.convertTemp(fc6h.main.temp);
-	this.forecastIcon6h =  this.getWeatherIcon(fc6h.weather[0].icon);
-      } else {
-	this.temp6h = '--';
-	this.forecastIcon6h = 'assets/weather/18.png';
+	} else {
+	  this.forecastContent[i-1].time = '00:00';
+	  this.forecastContent[i-1].temp = '--';
+	  this.forecastContent[i-1].icon = 'assets/weather/18.png';
+	}
+
       }
 
     }
