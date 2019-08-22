@@ -62,8 +62,8 @@ export class AppComponent  {
   */
 
   buildImgUrl(img) {
-    var w = window.innerWidth * 0.85
-    var h = window.innerHeight * 0.85
+    var w = window.innerWidth * 0.84
+    var h = window.innerHeight * 0.84
 
     return img + '?w=' + Math.floor(w) + '&h=' + Math.floor(h);
   }
