@@ -21,7 +21,7 @@ table {
 .imagearea { 
   text-align:center;
   width: 90%;
-  height:83%;
+  height:90%;
 }
 
 .img { 
@@ -52,26 +52,33 @@ td.ticker {
 
  }
 
+div.emilelogo { 
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+
+}
+
 @media (min-width: 0px) {
-  .emilelogo {
+  img.emilelogo {
     width: 100px; 
   }
 }
 
 @media (min-width: 1900px) {
-  .emilelogo {
+  img.emilelogo {
     width: 150px; 
   }
 }
 
 @media (min-width: 2500px) {
-  .emilelogo {
+  img.emilelogo {
     width: 200px; 
   }
 }
 
 @media (min-width: 3500px) {
-  .emilelogo {
+  img.emilelogo {
     width: 280px; 
   }
 }
