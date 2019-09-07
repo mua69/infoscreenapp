@@ -42,7 +42,7 @@ export class AppComponent  {
   //@ViewChild('imgarea') imgelem;
 
 
-  constructor( private config: ConfigService) {
+  constructor( public config: ConfigService) {
     this.update();
    
     // Periodically update the information displayed on the page
