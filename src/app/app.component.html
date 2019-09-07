@@ -3,8 +3,31 @@
   <table>
     <tr>
       <td class="imagearea">
+	<div *ngIf="config.getScreenConfig()==1">
 	  <img class="img" src="{{img}}"/>
-	  <!-- <img style="max-width:500px;max-height:500px;" src="assets/{{img}}"/> -->
+	</div>
+
+	<div *ngIf="config.getScreenConfig()==4">
+	   <table>
+	    <tr>
+	      <td class="imagearea4">
+		<img class="img" src="{{img}}"/>
+	      </td>
+	      <td class="imagearea4">
+		<img class="img" src="{{dia1}}"/>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="imagearea4">
+		<img class="img" src="{{img2}}"/>
+	      </td>
+	      <td class="imagearea4">
+		<img class="img" src="{{dia2}}"/>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+
       </td>
       <td rowspan="2" class="sidebar">
 	<div class="emilelogo">

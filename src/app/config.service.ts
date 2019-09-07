@@ -13,6 +13,7 @@ export class ConfigService {
   private timer: Observable<number>;
 
   private config: any = {
+    "screen_config":1,
     "content_image_display_duration":30,
     "ticker_display_duration": 5,
     "mixin_image_display_duration": 5,
@@ -25,6 +26,7 @@ export class ConfigService {
 
   private content: any = {
     "content_images": [],
+    "content2_images": [],
     "mixin_images": [],
     "ticker": []
   };
@@ -55,6 +57,10 @@ export class ConfigService {
 
   fetchContent() {
     this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data });
+  }
+
+  getScreenConfig() {
+    return this.config.screen_config;
   }
 
   getContentImageDisplayDuration() {

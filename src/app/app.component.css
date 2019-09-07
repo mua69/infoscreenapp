@@ -24,6 +24,14 @@ table {
   height:90%;
 }
 
+.imagearea4 { 
+  text-align:center;
+  width: 50%;
+  height:50%;
+}
+
+
+
 .img { 
   box-shadow: 5px 5px 5px rgba(100, 100, 100, 0.7);
   border-radius: 10px;

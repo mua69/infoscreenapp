@@ -14,13 +14,18 @@ export class AppComponent  {
   title = 'infoscreen';
 
   private contentImages = [];
+  private content2Images = [];
   private mixinImages = [];
   private tickerList = [];
 
   public img = '';
+  public img2 = '';
+  public dia1 = '';
+  public dia2 = '';
   public ticker = '';
 
   private imgNr = 0;
+  private img2Nr = 0;
   private tickerNr = 0;
 
   private mixinImgNr = 0;
@@ -30,6 +35,7 @@ export class AppComponent  {
 
 
   private lastImgTime = 0;
+  private lastDiaTime = 0;
   private lastTickerTime = 0;
   private timer: Observable<number>;
 
@@ -65,6 +71,11 @@ export class AppComponent  {
     var w = window.innerWidth * 0.84
     var h = window.innerHeight * 0.84
 
+    if (this.config.getScreenConfig() == 4) {
+	w *= 0.48;
+	h *= 0.48;
+    }
+
     return img + '?w=' + Math.floor(w) + '&h=' + Math.floor(h);
   }
 
@@ -79,6 +90,19 @@ export class AppComponent  {
     }
 
     return this.config.getRepUrl() + this.contentImages[this.imgNr];
+  }
+
+  nextContent2Img() {
+    if (this.content2Images.length == 0) {
+      return 'assets/empty.png';
+    }
+
+    this.img2Nr += 1;
+    if (this.img2Nr >= this.content2Images.length) {
+      this.img2Nr = 0;
+    }
+
+    return this.config.getRepUrl() + this.content2Images[this.img2Nr];
   }
 
   nextMixinImg() {
@@ -110,30 +134,45 @@ export class AppComponent  {
   update(): void {
     var content = this.config.getContent();
     this.contentImages = content.content_images;
+    this.content2Images = content.content2_images;
     this.tickerList = content.ticker;
     this.mixinImages = content.mixin_images;
 
     var now = Date.now();
 
-    if (this.isMixin) {
-      if (now - this.lastImgTime > 1000*this.config.getMixinImageDisplayDuration()) {
-	this.isMixin = false;
-	this.mixinCnt = 0;
-	this.lastImgTime = now;
-	this.img = this.buildImgUrl(this.nextContentImg());
-      }
-    } else {
-      if (now - this.lastImgTime > 1000*this.config.getContentImageDisplayDuration()) {
-	this.mixinCnt += 1;
-	if (this.config.getMixinImageRate() > 0 && this.mixinCnt >= this.config.getMixinImageRate() && this.mixinImages.length > 0) {
-	  this.isMixin = true;
-	  this.img = this.buildImgUrl(this.nextMixinImg());
-	} else {
+    if (this.config.getScreenConfig() == 1) {
+      if (this.isMixin) {
+        if (now - this.lastImgTime > 1000*this.config.getMixinImageDisplayDuration()) {
+	  this.isMixin = false;
+	  this.mixinCnt = 0;
+	  this.lastImgTime = now;
 	  this.img = this.buildImgUrl(this.nextContentImg());
-	}
-	this.lastImgTime = now;
+        }
+      } else {
+        if (now - this.lastImgTime > 1000*this.config.getContentImageDisplayDuration()) {
+	  this.mixinCnt += 1;
+	  if (this.config.getMixinImageRate() > 0 && this.mixinCnt >= this.config.getMixinImageRate() && this.mixinImages.length > 0) {
+	    this.isMixin = true;
+	    this.img = this.buildImgUrl(this.nextMixinImg());
+	  } else {
+	    this.img = this.buildImgUrl(this.nextContentImg());
+	  }
+	  this.lastImgTime = now;
+        }
       }
-    }
+     } else {
+	if (now - this.lastImgTime > 1000*this.config.getContentImageDisplayDuration()) {
+	  this.img = this.buildImgUrl(this.nextContentImg());
+	  this.img2 = this.buildImgUrl(this.nextContent2Img());
+	  this.lastImgTime = now;
+	}
+
+	if (now - this.lastDiaTime > 1000*this.config.getMixinImageDisplayDuration()) {
+	  this.dia1 = this.buildImgUrl(this.nextMixinImg());
+	  this.dia2 = this.buildImgUrl(this.nextMixinImg());
+	  this.lastDiaTime = now;
+        }
+     }
 
     if (now - this.lastTickerTime > 1000*this.config.getTickerDisplayDuration()) {
       this.lastTickerTime = now;
