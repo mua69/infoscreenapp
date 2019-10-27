@@ -75,9 +75,14 @@ td.tickerAlert {
   animation-direction: alternate;
 }
 
+img.alert {
+  vertical-align: middle;
+  height: 6vh;
+}
+
 @keyframes tickerAlert {
   from {background-color: rgba(104, 158, 180, 0.5); }
-  to {background-color: rgba(140, 158, 180, 0.9); }
+  to {background-color: rgba(125, 189, 216, 0.9); }
 }
 
 .clock {

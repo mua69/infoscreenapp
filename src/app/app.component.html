@@ -1,54 +1,57 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="fs" (window:resize)="onResize($event)">
   <table class="main-table">
     <tr>
       <td class="imagearea">
-	<div *ngIf="config.getScreenConfig()==1">
-	  <img class="img" src="{{img}}"/>
-	</div>
+        <div *ngIf="config.getScreenConfig()==1">
+          <img class="img" src="{{img}}"/>
+        </div>
 
-	<div *ngIf="config.getScreenConfig()==4">
-	   <table class="imagearea4">
-	    <tr>
-	      <td class="imagearea4">
-		<img class="img" src="{{img}}"/>
-	      </td>
-	      <td class="imagearea4">
-		<img class="img" src="{{dia1}}"/>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td class="imagearea4">
-		<img class="img" src="{{img2}}"/>
-	      </td>
-	      <td class="imagearea4">
-		<img class="img" src="{{dia2}}"/>
-	      </td>
-	    </tr>
-	  </table>
-	</div>
+        <div *ngIf="config.getScreenConfig()==4">
+          <table class="imagearea4">
+            <tr>
+              <td class="imagearea4">
+                <img class="img" src="{{img}}"/>
+              </td>
+              <td class="imagearea4">
+                <img class="img" src="{{dia1}}"/>
+              </td>
+            </tr>
+            <tr>
+              <td class="imagearea4">
+                <img class="img" src="{{img2}}"/>
+              </td>
+              <td class="imagearea4">
+                <img class="img" src="{{dia2}}"/>
+              </td>
+            </tr>
+          </table>
+        </div>
 
-        </td>
+      </td>
       <td rowspan="2" class="sidebar">
-	<div class="emilelogo">
-	  <img class="emilelogo" src="assets/logo-emile-white.png">
-	</div>
-	<div class="clock">
-	  <app-clock></app-clock>
-	  <p></p>
-	  <app-weather></app-weather>
-	</div>
+        <div class="emilelogo">
+          <img class="emilelogo" src="assets/logo-emile-white.png">
+        </div>
+        <div class="clock">
+          <app-clock></app-clock>
+          <p></p>
+          <app-weather></app-weather>
+        </div>
 
 
       </td>
     </tr>
     <tr>
       <td *ngIf="this.tickerAlert" class="tickerAlert">
-        {{ticker}}
+        <div vertical-align="center" text-align="center">
+          <img class="alert" src="assets/icons8-informationen-96.png"/>
+          <!--<img class="alert" src="assets/animated-gif-icon-0.jpg"/>-->
+          {{ticker}}
+        </div>
       </td>
       <td *ngIf="!this.tickerAlert" class="ticker">
-          {{ticker}}
+        {{ticker}}
       </td>
     </tr>
-</table>
+  </table>
 </div>

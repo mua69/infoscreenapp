@@ -47,7 +47,7 @@ export class ConfigService {
     if (environment.production) {
       return location + 'api';
     } else {
-      return 'http://localhost:4201/api';
+      return 'http://192.168.0.20:4201/api';
     }
   }
 
