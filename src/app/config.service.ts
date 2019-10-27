@@ -13,50 +13,51 @@ export class ConfigService {
   private timer: Observable<number>;
 
   private config: any = {
-    "screen_config":1,
-    "content_image_display_duration":30,
-    "ticker_display_duration": 5,
-    "mixin_image_display_duration": 5,
-    "mixin_image_rate": 2,
+    screen_config: 1,
+    content_image_display_duration: 30,
+    ticker_display_duration: 5,
+    mixin_image_display_duration: 5,
+    mixin_image_rate: 2,
 
-    "open_weather_map_url": '',
-    "open_weather_map_api_key": '',
-    "open_weather_map_city_id": ''
+    open_weather_map_url: '',
+    open_weather_map_api_key: '',
+    open_weather_map_city_id: ''
   };
 
   private content: any = {
-    "content_images": [],
-    "content2_images": [],
-    "mixin_images": [],
-    "ticker": []
+    content_images: [],
+    content2_images: [],
+    mixin_images: [],
+    ticker: [],
+    ticker_default: ''
   };
 
   constructor(private http: HttpClient) {
     this.fetchConfig();
     this.fetchContent();
 
-    this.timer = interval(60*1000);
+    this.timer = interval(60 * 1000);
     this.timer.subscribe((t) => {
       this.fetchContent();
     });
 
   }
 
-  get url() : string {
+  get url(): string {
     if (environment.production) {
       return location + 'api';
     } else {
-      return 'http://192.168.0.20:4201/api';
+      return 'http://localhost:4201/api';
     }
   }
-			   
+
   fetchConfig() {
-    //console.log('ConfigService: fetch config');
-    this.http.get(`${this.url}/config`).subscribe((data: any) => { this.config = data });
+    // console.log('ConfigService: fetch config');
+    this.http.get(`${this.url}/config`).subscribe((data: any) => { this.config = data; });
   }
 
   fetchContent() {
-    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data });
+    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data; });
   }
 
   getScreenConfig() {
@@ -99,5 +100,5 @@ export class ConfigService {
   getRepUrl() {
     return `${this.url}/rep/`;
   }
-  
+
 }

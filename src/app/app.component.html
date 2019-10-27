@@ -28,7 +28,7 @@
 	  </table>
 	</div>
 
-      </td>
+        </td>
       <td rowspan="2" class="sidebar">
 	<div class="emilelogo">
 	  <img class="emilelogo" src="assets/logo-emile-white.png">
@@ -43,8 +43,11 @@
       </td>
     </tr>
     <tr>
-      <td class="ticker">
-	  <marquee direction="right" behavior="scroll" scrollamount="1" scrolldelay="10" truespeed="1" >{{ticker}}</marquee>
+      <td *ngIf="this.tickerAlert" class="tickerAlert">
+        {{ticker}}
+      </td>
+      <td *ngIf="!this.tickerAlert" class="ticker">
+          {{ticker}}
       </td>
     </tr>
 </table>

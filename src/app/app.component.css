@@ -4,7 +4,7 @@
   border-spacing: 1vh;
 }
 
-.fs { 
+.fs {
   position: absolute;
   width:98%;
   height:98%;
@@ -18,19 +18,19 @@
   border-radius: 10px;
  }
 
-.imagearea { 
+.imagearea {
   text-align:center;
   width: 90%;
   height:90%;
 }
 
-table.imagearea4 { 
+table.imagearea4 {
   width:100%;
   height:100%;
   border-spacing: 1vh;
 }
 
-td.imagearea4 { 
+td.imagearea4 {
   text-align:center;
   width: 50%;
   height:50%;
@@ -38,17 +38,18 @@ td.imagearea4 {
 
 
 
-.img { 
+.img {
   box-shadow: 5px 5px 5px rgba(100, 100, 100, 0.7);
   border-radius: 10px;
  }
 
-div.ticker { 
+div.ticker {
   width: 100%;
   height: 100%;
+  animation: tickerAlert 5s infinite;
  }
 
-td.ticker { 
+td.ticker {
   height: 100%;
   box-shadow: 5px 5px 5px rgba(100, 100, 100, 0.7);
   background-color: rgba(104, 158, 180, 0.5);  /* #689eb4;*/    /*#4487a2;*/
@@ -60,13 +61,32 @@ td.ticker {
   border-radius: 10px;
 }
 
-.clock { 
+td.tickerAlert {
+  height: 100%;
+  box-shadow: 5px 5px 5px rgba(100, 100, 100, 0.7);
+  background-color: rgba(104, 158, 180, 0.5);  /* #689eb4;*/    /*#4487a2;*/
+  color: white;
+  font-family: arial;
+  font-size: 4vh;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 10px;
+  animation: tickerAlert 2s infinite;
+  animation-direction: alternate;
+}
+
+@keyframes tickerAlert {
+  from {background-color: rgba(104, 158, 180, 0.5); }
+  to {background-color: rgba(140, 158, 180, 0.9); }
+}
+
+.clock {
   color: white;
   font-family:arial;
 
  }
 
-div.emilelogo { 
+div.emilelogo {
   margin-top: 5px;
   margin-left: 2px;
   margin-right: 2px;
@@ -75,25 +95,25 @@ div.emilelogo {
 
 @media (min-width: 0px) {
   img.emilelogo {
-    width: 100px; 
+    width: 100px;
   }
 }
 
 @media (min-width: 1900px) {
   img.emilelogo {
-    width: 150px; 
+    width: 150px;
   }
 }
 
 @media (min-width: 2500px) {
   img.emilelogo {
-    width: 200px; 
+    width: 200px;
   }
 }
 
 @media (min-width: 3500px) {
   img.emilelogo {
-    width: 280px; 
+    width: 280px;
   }
 }
 

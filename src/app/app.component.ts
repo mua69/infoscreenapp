@@ -10,19 +10,20 @@ import { ConfigService } from './config.service';
 
 export class AppComponent  {
 
-
   title = 'infoscreen';
 
   private contentImages = [];
   private content2Images = [];
   private mixinImages = [];
   private tickerList = [];
+  private  tickerDefault = '';
 
   public img = '';
   public img2 = '';
   public dia1 = '';
   public dia2 = '';
   public ticker = '';
+  public tickerAlert = false;
 
   private imgNr = 0;
   private img2Nr = 0;
@@ -39,26 +40,26 @@ export class AppComponent  {
   private lastTickerTime = 0;
   private timer: Observable<number>;
 
-  //@ViewChild('imgarea') imgelem;
+  // @ViewChild('imgarea') imgelem;
 
 
   constructor( public config: ConfigService) {
     this.update();
-   
+
     // Periodically update the information displayed on the page
 
-    this.timer = interval(1*1000);
+    this.timer = interval(1 * 1000);
     this.timer.subscribe((t) => {
       this.update();
     });
   }
 
   ngOnInit() {
-    //console.log("onInit");
+    // console.log("onInit");
   }
 
   onResize(event) {
-    //console.log("resize: " + event.target.innerWidth + " " + event.target.innerHeight);
+    // console.log("resize: " + event.target.innerWidth + " " + event.target.innerHeight);
   }
 
   /*
@@ -68,19 +69,20 @@ export class AppComponent  {
   */
 
   buildImgUrl(img) {
-    var w = window.innerWidth * 0.84
-    var h = window.innerHeight * 0.84
+    let w = window.innerWidth * 0.84;
+    let h = window.innerHeight * 0.84;
 
-    if (this.config.getScreenConfig() == 4) {
-	w *= 0.48;
-	h *= 0.48;
+    if (this.config.getScreenConfig() === 4) {
+      w *= 0.48;
+      h *= 0.48;
     }
 
     return img + '?w=' + Math.floor(w) + '&h=' + Math.floor(h);
+
   }
 
   nextContentImg() {
-    if (this.contentImages.length == 0) {
+    if (this.contentImages.length === 0) {
       return 'assets/empty.png';
     }
 
@@ -120,7 +122,8 @@ export class AppComponent  {
 
   nextTickerMsg() {
     if (this.tickerList.length == 0) {
-      return "";
+      this.tickerAlert = false;
+      return this.tickerDefault;
     }
 
     this.tickerNr += 1;
@@ -128,53 +131,59 @@ export class AppComponent  {
       this.tickerNr = 0;
     }
 
+    this.tickerAlert = true;
     return this.tickerList[this.tickerNr];
   }
 
   update(): void {
-    var content = this.config.getContent();
+    const content = this.config.getContent();
     this.contentImages = content.content_images;
     this.content2Images = content.content2_images;
     this.tickerList = content.ticker;
+    this.tickerDefault = content.ticker_default;
     this.mixinImages = content.mixin_images;
 
-    var now = Date.now();
+    if (this.tickerList == null) {
+      this.tickerList = [];
+    }
+
+    const now = Date.now();
 
     if (this.config.getScreenConfig() == 1) {
       if (this.isMixin) {
-        if (now - this.lastImgTime > 1000*this.config.getMixinImageDisplayDuration()) {
-	  this.isMixin = false;
-	  this.mixinCnt = 0;
-	  this.lastImgTime = now;
-	  this.img = this.buildImgUrl(this.nextContentImg());
+        if (now - this.lastImgTime > 1000 * this.config.getMixinImageDisplayDuration()) {
+          this.isMixin = false;
+          this.mixinCnt = 0;
+          this.lastImgTime = now;
+          this.img = this.buildImgUrl(this.nextContentImg());
         }
       } else {
-        if (now - this.lastImgTime > 1000*this.config.getContentImageDisplayDuration()) {
-	  this.mixinCnt += 1;
-	  if (this.config.getMixinImageRate() > 0 && this.mixinCnt >= this.config.getMixinImageRate() && this.mixinImages.length > 0) {
-	    this.isMixin = true;
-	    this.img = this.buildImgUrl(this.nextMixinImg());
-	  } else {
-	    this.img = this.buildImgUrl(this.nextContentImg());
-	  }
-	  this.lastImgTime = now;
+        if (now - this.lastImgTime > 1000 * this.config.getContentImageDisplayDuration()) {
+          this.mixinCnt += 1;
+          if (this.config.getMixinImageRate() > 0 && this.mixinCnt >= this.config.getMixinImageRate() && this.mixinImages.length > 0) {
+            this.isMixin = true;
+            this.img = this.buildImgUrl(this.nextMixinImg());
+          } else {
+            this.img = this.buildImgUrl(this.nextContentImg());
+          }
+          this.lastImgTime = now;
         }
       }
-     } else {
-	if (now - this.lastImgTime > 1000*this.config.getContentImageDisplayDuration()) {
-	  this.img = this.buildImgUrl(this.nextContentImg());
-	  this.img2 = this.buildImgUrl(this.nextContent2Img());
-	  this.lastImgTime = now;
-	}
+    } else {
+      if (now - this.lastImgTime > 1000 * this.config.getContentImageDisplayDuration()) {
+        this.img = this.buildImgUrl(this.nextContentImg());
+        this.img2 = this.buildImgUrl(this.nextContent2Img());
+        this.lastImgTime = now;
+      }
 
-	if (now - this.lastDiaTime > 1000*this.config.getMixinImageDisplayDuration()) {
-	  this.dia1 = this.buildImgUrl(this.nextMixinImg());
-	  this.dia2 = this.buildImgUrl(this.nextMixinImg());
-	  this.lastDiaTime = now;
-        }
-     }
+      if (now - this.lastDiaTime > 1000 * this.config.getMixinImageDisplayDuration()) {
+        this.dia1 = this.buildImgUrl(this.nextMixinImg());
+        this.dia2 = this.buildImgUrl(this.nextMixinImg());
+        this.lastDiaTime = now;
+      }
+    }
 
-    if (now - this.lastTickerTime > 1000*this.config.getTickerDisplayDuration()) {
+    if (now - this.lastTickerTime > 1000 * this.config.getTickerDisplayDuration()) {
       this.lastTickerTime = now;
       this.ticker = this.nextTickerMsg();
     }
