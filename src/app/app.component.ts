@@ -85,7 +85,7 @@ export class AppComponent  {
   }
 
   nextContentImg() {
-    if (this.contentImages.length === 0) {
+    if (this.contentImages === null || this.contentImages.length === 0) {
       return 'assets/empty.png';
     }
 
@@ -99,7 +99,7 @@ export class AppComponent  {
 
 
   nextContent2Img() {
-    if (this.content2Images.length === 0) {
+    if (this.content2Images === null || this.content2Images.length === 0) {
       return 'assets/empty.png';
     }
 
@@ -112,7 +112,7 @@ export class AppComponent  {
   }
 
   nextContent3Img() {
-    if (this.content3Images.length === 0) {
+    if (this.content3Images === null || this.content3Images.length === 0) {
       return 'assets/empty.png';
     }
 
@@ -125,8 +125,8 @@ export class AppComponent  {
   }
 
   nextMixinImg() {
-    if (this.contentImages.length === 0) {
-      return '';
+    if (this.mixinImages === null || this.mixinImages.length === 0) {
+      return 'assets/empty.png';
     }
 
     this.mixinImgNr += 1;
@@ -138,7 +138,7 @@ export class AppComponent  {
   }
 
   nextTickerMsg() {
-    if (this.tickerList.length === 0) {
+    if (this.tickerList === null || this.tickerList.length === 0) {
       this.tickerAlert = false;
       return this.tickerDefault;
     }
