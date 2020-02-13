@@ -27,6 +27,7 @@ export class ConfigService {
   private content: any = {
     content_images: [],
     content2_images: [],
+    content3_images: [],
     mixin_images: [],
     ticker: [],
     ticker_default: ''
@@ -47,7 +48,7 @@ export class ConfigService {
     if (environment.production) {
       return location + 'api';
     } else {
-      return 'http://192.168.0.20:4201/api';
+      return 'http://192.168.0.22:4201/api';
     }
   }
 

@@ -14,12 +14,14 @@ export class AppComponent  {
 
   private contentImages = [];
   private content2Images = [];
+  private content3Images = [];
   private mixinImages = [];
   private tickerList = [];
   private  tickerDefault = '';
 
   public img = '';
   public img2 = '';
+  public img3 = '';
   public dia1 = '';
   public dia2 = '';
   public ticker = '';
@@ -27,6 +29,7 @@ export class AppComponent  {
 
   private imgNr = 0;
   private img2Nr = 0;
+  private img3Nr = 0;
   private tickerNr = 0;
 
   private mixinImgNr = 0;
@@ -94,8 +97,9 @@ export class AppComponent  {
     return this.config.getRepUrl() + this.contentImages[this.imgNr];
   }
 
+
   nextContent2Img() {
-    if (this.content2Images.length == 0) {
+    if (this.content2Images.length === 0) {
       return 'assets/empty.png';
     }
 
@@ -107,8 +111,21 @@ export class AppComponent  {
     return this.config.getRepUrl() + this.content2Images[this.img2Nr];
   }
 
+  nextContent3Img() {
+    if (this.content3Images.length === 0) {
+      return 'assets/empty.png';
+    }
+
+    this.img3Nr += 1;
+    if (this.img3Nr >= this.content3Images.length) {
+      this.img3Nr = 0;
+    }
+
+    return this.config.getRepUrl() + this.content3Images[this.img3Nr];
+  }
+
   nextMixinImg() {
-    if (this.contentImages.length == 0) {
+    if (this.contentImages.length === 0) {
       return '';
     }
 
@@ -121,7 +138,7 @@ export class AppComponent  {
   }
 
   nextTickerMsg() {
-    if (this.tickerList.length == 0) {
+    if (this.tickerList.length === 0) {
       this.tickerAlert = false;
       return this.tickerDefault;
     }
@@ -139,6 +156,7 @@ export class AppComponent  {
     const content = this.config.getContent();
     this.contentImages = content.content_images;
     this.content2Images = content.content2_images;
+    this.content3Images = content.content3_images;
     this.tickerList = content.ticker;
     this.tickerDefault = content.ticker_default;
     this.mixinImages = content.mixin_images;
@@ -149,7 +167,7 @@ export class AppComponent  {
 
     const now = Date.now();
 
-    if (this.config.getScreenConfig() == 1) {
+    if (this.config.getScreenConfig() === 1) {
       if (this.isMixin) {
         if (now - this.lastImgTime > 1000 * this.config.getMixinImageDisplayDuration()) {
           this.isMixin = false;
@@ -173,12 +191,13 @@ export class AppComponent  {
       if (now - this.lastImgTime > 1000 * this.config.getContentImageDisplayDuration()) {
         this.img = this.buildImgUrl(this.nextContentImg());
         this.img2 = this.buildImgUrl(this.nextContent2Img());
+        this.img3 = this.buildImgUrl(this.nextContent3Img());
         this.lastImgTime = now;
       }
 
       if (now - this.lastDiaTime > 1000 * this.config.getMixinImageDisplayDuration()) {
         this.dia1 = this.buildImgUrl(this.nextMixinImg());
-        this.dia2 = this.buildImgUrl(this.nextMixinImg());
+        //this.dia2 = this.buildImgUrl(this.nextMixinImg());
         this.lastDiaTime = now;
       }
     }

@@ -59,7 +59,7 @@ export class WeatherComponent implements OnInit {
 			     [ '50d', '40.png'],
 			     [ '50n', '40.png'],
 			     ]);
-    
+
     var i;
     for (i = 0; i < 4; i++) {
       this.forecastContent.push({'time':'00:00', 'temp':'--', 'icon':'assets/weather/18.png'});
@@ -91,7 +91,7 @@ export class WeatherComponent implements OnInit {
 
       var id = this.config.getOpenWeatherMapCityId();
       url += 'id=' + id;
-      
+
       var apiKey = this.config.getOpenWeatherMapApiKey();
       url += '&appid=' + apiKey;
 
@@ -109,7 +109,7 @@ export class WeatherComponent implements OnInit {
 
       var id = this.config.getOpenWeatherMapCityId();
       url += 'id=' + id;
-      
+
       var apiKey = this.config.getOpenWeatherMapApiKey();
       url += '&appid=' + apiKey;
 
@@ -123,7 +123,7 @@ export class WeatherComponent implements OnInit {
     var url = this.buildWeatherUrl();
 
     if (url != '') {
-      this.http.get(url).subscribe((data: any) => { this.weather = data; } ); 
+      this.http.get(url).subscribe((data: any) => { this.weather = data; } );
     }
   }
 
@@ -131,12 +131,12 @@ export class WeatherComponent implements OnInit {
     var url = this.buildForecastUrl();
 
     if (url != '') {
-      this.http.get(url).subscribe((data: any) => { this.forecast = data; } ); 
+      this.http.get(url).subscribe((data: any) => { this.forecast = data; } );
     }
   }
 
   getWeatherIcon(iconId) {
-    
+
     var icon = this.iconMap.get(iconId);
 
     if (!icon) {
@@ -148,7 +148,12 @@ export class WeatherComponent implements OnInit {
 
   convertTemp(temp) {
     temp  = temp - 273.15;
-    return temp.toFixed(0).toString();
+    var s = temp.toFixed(0).toString();
+    if (s === '-0') {
+      return '0';
+    } else {
+      return s;
+    }
   }
 
   padzero(v: number): string {
