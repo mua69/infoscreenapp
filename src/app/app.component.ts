@@ -72,12 +72,12 @@ export class AppComponent  {
   */
 
   buildImgUrl(img) {
-    let w = window.innerWidth * 0.84;
-    let h = window.innerHeight * 0.84;
+    let w = window.innerWidth * 0.88;
+    let h = window.innerHeight * 0.88;
 
     if (this.config.getScreenConfig() === 4) {
-      w *= 0.48;
-      h *= 0.48;
+      w *= 0.5;
+      h *= 0.5;
     }
 
     return img + '?w=' + Math.floor(w) + '&h=' + Math.floor(h);
