@@ -12,7 +12,7 @@ The info screen display consists of following elements:
 
 In single content image mode the content image sequence may be intermixed with a dia show image sequence at a configurable rate. 
 
-Configuration and content supply is handled by the `infoscreenservice` application. See its [documentation](https://github.com/mua69/infoscreenservice/README.md) for details.
+Configuration and content supply is handled by the `infoscreenservice` application. See its [documentation](https://github.com/mua69/infoscreenservice) for details.
 
 This application has been tested with Firefox but should work with other browsers as well - 
 just some fine tuning of the widget sizes for full screen mode may be required.
