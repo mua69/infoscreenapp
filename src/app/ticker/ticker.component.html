@@ -1,0 +1,11 @@
+<div *ngIf="this.tickerAlert" class="tickerAlert">
+  <div class="center">
+    <img class="alert" src="assets/icons8-informationen-96.png"/>
+    {{ticker}}
+  </div>
+</div>
+<div *ngIf="!this.tickerAlert" class="ticker">
+  <div class="center">
+    {{ticker}}
+  </div>
+</div>

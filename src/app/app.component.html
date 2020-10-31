@@ -3,25 +3,25 @@
     <tr>
       <td class="imagearea">
         <div *ngIf="config.getScreenConfig()==1">
-          <img class="img" src="{{img}}"/>
+          <app-content [contentStream]="'c1'" [imgWidth]="imgWidth" [imgHeight]="imgHeight" [mixin]="true"></app-content>
         </div>
 
         <div *ngIf="config.getScreenConfig()==4">
           <table class="imagearea4">
             <tr>
               <td class="imagearea4">
-                <img class="img" src="{{img}}"/>
+                <app-content [contentStream]="'c1'" [imgWidth]="imgWidth" [imgHeight]="imgHeight" [mixin]="false"></app-content>
               </td>
               <td class="imagearea4">
-                <img class="img" src="{{img3}}"/>
+                <app-content [contentStream]="'c3'" [imgWidth]="imgWidth" [imgHeight]="imgHeight" [mixin]="false"></app-content>
               </td>
             </tr>
             <tr>
               <td class="imagearea4">
-                <img class="img" src="{{img2}}"/>
+                <app-content [contentStream]="'c2'" [imgWidth]="imgWidth" [imgHeight]="imgHeight" [mixin]="false"></app-content>
               </td>
               <td class="imagearea4">
-                <img class="img" src="{{dia1}}"/>
+                <app-content [contentStream]="'d1'" [imgWidth]="imgWidth" [imgHeight]="imgHeight" [mixin]="false"></app-content>
               </td>
             </tr>
           </table>
@@ -41,17 +41,19 @@
 
       </td>
     </tr>
-    <tr>
+    <tr class="ticker">
+      <td><app-ticker></app-ticker></td>
+      <!--
       <td *ngIf="this.tickerAlert" class="tickerAlert">
         <div vertical-align="center" text-align="center">
           <img class="alert" src="assets/icons8-informationen-96.png"/>
-          <!--<img class="alert" src="assets/animated-gif-icon-0.jpg"/>-->
           {{ticker}}
         </div>
       </td>
       <td *ngIf="!this.tickerAlert" class="ticker">
         {{ticker}}
       </td>
+      -->
     </tr>
   </table>
 </div>

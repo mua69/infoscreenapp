@@ -18,10 +18,13 @@ export class ConfigService {
     ticker_display_duration: 5,
     mixin_image_display_duration: 5,
     mixin_image_rate: 2,
+    max_video_duration: 0,
 
     open_weather_map_url: '',
     open_weather_map_api_key: '',
-    open_weather_map_city_id: ''
+    open_weather_map_city_id: '',
+
+    video_extensions: [".mp4"]
   };
 
   private content: any = {
@@ -78,8 +81,16 @@ export class ConfigService {
     return this.config.mixin_image_rate;
   }
 
+  getMaxVideoDuration() {
+    return this.config.max_video_duration;
+  }
+
   getTickerDisplayDuration() {
     return this.config.ticker_display_duration;
+  }
+
+  getVideoExtensions() {
+    return this.config.video_extensions;
   }
 
   getOpenWeatherMapUrl() {
