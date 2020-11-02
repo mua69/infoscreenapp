@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { interval, Observable } from 'rxjs';
+import {interval, Observable, Subject} from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -11,6 +11,11 @@ import { environment } from '../environments/environment';
 export class ConfigService {
 
   private timer: Observable<number>;
+  private configLoadedSource = new Subject<boolean>();
+  private contentLoadedSource = new Subject<boolean>();
+
+  configLoaded$ = this.configLoadedSource.asObservable();
+  contentLoaded$ = this.contentLoadedSource.asObservable();
 
   private config: any = {
     screen_config: 1,
@@ -57,11 +62,11 @@ export class ConfigService {
 
   fetchConfig() {
     // console.log('ConfigService: fetch config');
-    this.http.get(`${this.url}/config`).subscribe((data: any) => { this.config = data; });
+    this.http.get(`${this.url}/config`).subscribe((data: any) => { this.config = data; this.configLoadedSource.next(true); });
   }
 
   fetchContent() {
-    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data; });
+    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data; this.contentLoadedSource.next(true); });
   }
 
   getScreenConfig() {

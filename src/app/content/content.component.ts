@@ -27,11 +27,13 @@ export class ContentComponent implements OnInit {
   private mixinCnt = 0;
   private mixinRate = 0;
   private isMixin = false;
+  private displayDuration = 0;
 
   private timer: Observable<number>;
 
   constructor(public config: ConfigService) {
     this.setUpdateTimer(5);
+    this.config.contentLoaded$.subscribe(dummy => { this.getContent(); });
   }
 
   setUpdateTimer(secs: number) {
@@ -61,18 +63,23 @@ export class ContentComponent implements OnInit {
     switch (this.contentStream) {
       case 'c1':
         this.contentImages = content.content_images;
+        this.displayDuration = this.config.getContentImageDisplayDuration();
         break;
       case 'c2':
         this.contentImages = content.content2_images;
+        this.displayDuration = this.config.getContentImageDisplayDuration();
         break;
       case 'c3':
         this.contentImages = content.content3_images;
+        this.displayDuration = this.config.getContentImageDisplayDuration();
         break;
       case 'd1':
         this.contentImages = content.mixin_images;
+        this.displayDuration = this.config.getMixinImageDisplayDuration();
         break;
       default:
         console.log('ContentComponent: invalid content stream id');
+        this.displayDuration = 2;
         this.contentImages = [];
         break;
     }
@@ -113,8 +120,6 @@ export class ContentComponent implements OnInit {
   }
 
   update(): void {
-    this.getContent();
-
     let src: string;
 
     if (this.isMixin) {
@@ -152,7 +157,7 @@ export class ContentComponent implements OnInit {
       if (this.isMixin) {
         this.setUpdateTimer(this.config.getMixinImageDisplayDuration());
       } else {
-        this.setUpdateTimer(this.config.getContentImageDisplayDuration());
+        this.setUpdateTimer(this.displayDuration);
       }
     }
   }
