@@ -1,4 +1,4 @@
-<div class="fs" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
+<div class="fs" (window:resize)="onResize($event)" (window:onload1)="onResize($event)">
   <table class="main-table">
     <tr>
       <td class="imagearea">
@@ -43,17 +43,6 @@
     </tr>
     <tr class="ticker">
       <td><app-ticker></app-ticker></td>
-      <!--
-      <td *ngIf="this.tickerAlert" class="tickerAlert">
-        <div vertical-align="center" text-align="center">
-          <img class="alert" src="assets/icons8-informationen-96.png"/>
-          {{ticker}}
-        </div>
-      </td>
-      <td *ngIf="!this.tickerAlert" class="ticker">
-        {{ticker}}
-      </td>
-      -->
     </tr>
   </table>
 </div>

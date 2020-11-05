@@ -8,7 +8,7 @@ import { ConfigService } from './config.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent  {
+export class AppComponent implements OnInit {
 
   title = 'infoscreen';
 
@@ -19,12 +19,10 @@ export class AppComponent  {
     config.configLoaded$.subscribe( dummy => {this.setImageSize(); });
   }
 
-  ngOnInit() {
-    //console.log("onInit");
+  ngOnInit(): void {
   }
 
   onResize(event) {
-    // console.log("resize: " + event.target.innerWidth + " " + event.target.innerHeight);
     this.setImageSize();
   }
 
@@ -32,14 +30,11 @@ export class AppComponent  {
     let w = window.innerWidth * 0.87;
     let h = window.innerHeight * 0.87;
 
-    console.log("window width:", window.innerWidth);
-
     if (this.config.getScreenConfig() === 4) {
       w *= 0.5;
       h *= 0.5;
     }
 
-    console.log("img width:", w);
     this.imgWidth = Math.floor(w);
     this.imgHeight = Math.floor(h);
   }

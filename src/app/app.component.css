@@ -34,8 +34,7 @@ table.imagearea4 {
 td.imagearea4 {
   text-align:center;
   vertical-align:center;
-  align:center;
-  width: 50%;
+  width:50%;
   height:50%;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
@@ -48,7 +47,7 @@ td.imagearea4 {
 
 .clock {
   color: white;
-  font-family:arial;
+  font-family: arial, serif;
 
  }
 
@@ -79,7 +78,7 @@ div.emilelogo {
 
 @media (min-width: 3500px) {
   img.emilelogo {
-    width: 280px;
+    width: 300px;
   }
 }
 

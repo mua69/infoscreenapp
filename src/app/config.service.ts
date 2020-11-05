@@ -12,7 +12,7 @@ export class ConfigService {
 
   private timer: Observable<number>;
   private configLoadedSource = new Subject<boolean>();
-  private contentLoadedSource = new Subject<boolean>();
+  private contentLoadedSource = new Subject<any>();
 
   configLoaded$ = this.configLoadedSource.asObservable();
   contentLoaded$ = this.contentLoadedSource.asObservable();
@@ -33,6 +33,7 @@ export class ConfigService {
   };
 
   private content: any = {
+    serial: 0,
     content_images: [],
     content2_images: [],
     content3_images: [],
@@ -56,7 +57,7 @@ export class ConfigService {
     if (environment.production) {
       return location + 'api';
     } else {
-      return 'http://192.168.0.22:4201/api';
+      return 'http://192.168.0.23:4201/api';
     }
   }
 
@@ -66,7 +67,15 @@ export class ConfigService {
   }
 
   fetchContent() {
-    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.content = data; this.contentLoadedSource.next(true); });
+    this.http.get(`${this.url}/content`).subscribe((data: any) => { this.processContent(data); });
+  }
+
+  processContent( data: any): void {
+    if (data.serial !== this.content.serial) {
+      //console.log('config.service: new content detected');
+      this.content = data;
+      this.contentLoadedSource.next(this.content);
+    }
   }
 
   getScreenConfig() {
