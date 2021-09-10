@@ -26,7 +26,7 @@ export class ContentComponent implements OnInit {
   private mixinCnt = 0;
   private mixinRate = 0;
   private isMixin = false;
-  private displayDuration = 0;
+  private displayDuration = 1;
 
   private emptyImage = { type: 'i',  repo_url: 'assets/empty.png'};
 
@@ -51,6 +51,7 @@ export class ContentComponent implements OnInit {
   }
 
   getContent(content: any): void {
+    //console.log('getContent called');
     switch (this.contentStream) {
       case 'c1':
         this.content = content.content_images;

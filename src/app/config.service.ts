@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {interval, Observable, Subject} from 'rxjs';
+import {timer, Observable, Subject} from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -27,9 +27,7 @@ export class ConfigService {
 
     open_weather_map_url: '',
     open_weather_map_api_key: '',
-    open_weather_map_city_id: '',
-
-    video_extensions: [".mp4"]
+    open_weather_map_city_id: ''
   };
 
   private content: any = {
@@ -43,10 +41,10 @@ export class ConfigService {
   };
 
   constructor(private http: HttpClient) {
-    this.fetchConfig();
-    this.fetchContent();
+    let configTimer = timer(2*1000);
+    configTimer.subscribe((t) => { this.fetchConfig(); });
 
-    this.timer = interval(60 * 1000);
+    this.timer = timer(5*1000, 60 * 1000);
     this.timer.subscribe((t) => {
       this.fetchContent();
     });
@@ -62,7 +60,7 @@ export class ConfigService {
   }
 
   fetchConfig() {
-    // console.log('ConfigService: fetch config');
+    //console.log('ConfigService: fetch config');
     this.http.get(`${this.url}/config`).subscribe((data: any) => { this.config = data; this.configLoadedSource.next(true); });
   }
 
@@ -101,10 +99,6 @@ export class ConfigService {
 
   getTickerDisplayDuration() {
     return this.config.ticker_display_duration;
-  }
-
-  getVideoExtensions() {
-    return this.config.video_extensions;
   }
 
   getOpenWeatherMapUrl() {
