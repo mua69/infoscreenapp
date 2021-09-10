@@ -76,6 +76,9 @@ export class ContentComponent implements OnInit {
     }
     if (this.mixin) {
       this.contentMixin = content.mixin_images;
+      if (this.contentMixin == null) {
+        this.contentMixin = [];
+      }
       this.mixinRate = this.config.getMixinImageRate();
     }
     this.imgNr = -1;
@@ -124,7 +127,7 @@ export class ContentComponent implements OnInit {
         src = this.nextContentMixin();
       }
     } else {
-      if (this.mixin && this.imgNr >= this.content.length - 1) {
+      if (this.mixin && this.contentMixin.length > 0 && this.imgNr >= this.content.length - 1) {
         this.isMixin = true;
         this.mixinCnt = 0;
         src = this.nextContentMixin();
